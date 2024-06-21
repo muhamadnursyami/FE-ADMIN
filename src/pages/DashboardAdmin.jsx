@@ -1,12 +1,23 @@
 import { useState } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, Navigate, useNavigate } from "react-router-dom";
 import Sidebarr from "../components/Sidebarr";
 
 export default function DashboardAdmin() {
   const [isOpen, setIsOpen] = useState(false);
+  const token = localStorage.getItem("token");
+  const navigate = useNavigate();
+
+  if (!token) {
+    return <Navigate to="/login" />;
+  }
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/login");
   };
 
   return (
@@ -42,6 +53,15 @@ export default function DashboardAdmin() {
                   Dashboard
                 </span>
               </a>
+            </div>
+            <div>
+              <button
+                onClick={handleLogout}
+                type="button"
+                className="text-sm text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg px-4 py-2"
+              >
+                Logout
+              </button>
             </div>
           </div>
         </div>

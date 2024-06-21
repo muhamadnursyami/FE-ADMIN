@@ -30,7 +30,6 @@ export default function CreateArtikel() {
         newArtikel
       );
       console.log("Artikel created successfully:", response.data);
-      // Optionally, redirect or reset the form here
       setTitle("");
       setPenulis("");
       setTahun("");
