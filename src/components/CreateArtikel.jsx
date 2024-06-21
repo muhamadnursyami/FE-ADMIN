@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-
+import toast, { Toaster } from "react-hot-toast";
 export default function CreateArtikel() {
   const [title, setTitle] = useState("");
   const [penulis, setPenulis] = useState("");
@@ -29,7 +29,8 @@ export default function CreateArtikel() {
         "https://high-pearle-istudent-e72a78db.koyeb.app/artikel",
         newArtikel
       );
-      console.log("Artikel created successfully:", response.data);
+      console.log("berhasil menambahkan artikel", response.data);
+      toast.success("Berhasil ditambahkan !");
       setTitle("");
       setPenulis("");
       setTahun("");
@@ -37,6 +38,7 @@ export default function CreateArtikel() {
       setContent([""]);
     } catch (error) {
       console.error("Error creating artikel:", error);
+      toast.error("Gagal membuat artikel");
     } finally {
       setIsSubmitting(false);
     }
@@ -47,6 +49,7 @@ export default function CreateArtikel() {
       onSubmit={handleSubmit}
       className="p-4 border-2 border-gray-200 shadow-md rounded-lg dark:border-gray-700 mt-14"
     >
+      <Toaster />
       <h1 className="text-2xl font-bold mb-3">Create Artikel</h1>
       <div className="mb-4">
         <label className="block text-gray-700">Title</label>

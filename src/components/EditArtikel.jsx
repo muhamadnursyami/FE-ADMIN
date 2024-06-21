@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-
+import toast, { Toaster } from "react-hot-toast";
 export default function EditArtikel() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -54,10 +54,14 @@ export default function EditArtikel() {
         `https://high-pearle-istudent-e72a78db.koyeb.app/artikel/${id}`,
         updatedArtikel
       );
-      console.log("Artikel updated successfully:", response.data);
-      navigate("/artikel");
+      console.log("Berhasil mengupdate artikel", response.data);
+      toast.success("Berhasil mengupdate artikel !");
+      setTimeout(() => {
+        navigate("/artikel");
+      }, 3000);
     } catch (error) {
       console.error("Error updating artikel:", error);
+      toast.error("Gagal mengupdate artikel");
     } finally {
       setIsSubmitting(false);
     }
@@ -68,6 +72,7 @@ export default function EditArtikel() {
       onSubmit={handleSubmit}
       className="p-4 border-2 border-gray-200 shadow-md rounded-lg dark:border-gray-700 mt-14"
     >
+      <Toaster />
       <h1 className="text-2xl font-bold mb-3">Edit Artikel</h1>
       <div className="mb-4">
         <label className="block text-gray-700">Title</label>

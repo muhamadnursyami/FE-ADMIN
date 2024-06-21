@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import toast, { Toaster } from "react-hot-toast";
 export default function ArtikelContent() {
   const [artikel, setArtikel] = useState([]);
   const navigate = useNavigate();
@@ -27,7 +27,7 @@ export default function ArtikelContent() {
 
   const handleDelete = async (id) => {
     const confirmDelete = window.confirm(
-      "Are you sure you want to delete this article?"
+      "Apakah kamu yakin untuk menghapus artikel ini?"
     );
     if (confirmDelete) {
       try {
@@ -35,17 +35,20 @@ export default function ArtikelContent() {
           `https://high-pearle-istudent-e72a78db.koyeb.app/artikel/${id}`
         );
         setArtikel(artikel.filter((item) => item._id !== id));
-        console.log("Artikel deleted successfully");
+        console.log("Berhasil mendelet artikel");
+        toast.success("Berhasil delete artikel");
       } catch (error) {
         console.error("Error deleting artikel:", error);
+        toast.error("Gagal Delete Artikel");
       }
     } else {
-      console.log("Delete action cancelled");
+      console.log("Tidak jadi delete");
     }
   };
 
   return (
     <div className="p-4 border-2 border-gray-200 shadow-md rounded-lg dark:border-gray-700 mt-14">
+      <Toaster />
       <h1 className="text-2xl font-bold mb-3">Artikel</h1>
       <button
         type="button"
