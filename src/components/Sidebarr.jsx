@@ -28,6 +28,15 @@ function Sidebarr({ isOpen, toggleSidebar }) {
               <span className="flex-1 ml-3 whitespace-nowrap">Artikel</span>
             </Link>
           </li>
+          <li>
+            <Link
+              className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+              to="pesan"
+              onClick={toggleSidebar}
+            >
+              <span className="flex-1 ml-3 whitespace-nowrap">Pesan</span>
+            </Link>
+          </li>
         </ul>
       </div>
     </aside>

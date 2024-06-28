@@ -5,6 +5,7 @@ import DashboardContent from "./components/DashboardContent";
 import ArtikelContent from "./components/ArtikelContent";
 import CreateArtikel from "./components/CreateArtikel";
 import EditArtikel from "./components/EditArtikel";
+import PesanContent from "./components/PesanContent";
 export default function App() {
   return (
     <>
@@ -15,6 +16,7 @@ export default function App() {
           <Route path="artikel" element={<ArtikelContent />} />
           <Route path="artikel/create" element={<CreateArtikel />} />
           <Route path="artikel/edit/:id" element={<EditArtikel />} />
+          <Route path="pesan" element={<PesanContent />} />
         </Route>
       </Routes>
     </>
